@@ -3,38 +3,20 @@ import {StyleSheet, Text, View, Image} from 'react-native';
 import {Button, TextInput} from 'react-native-paper';
 import i18n from 'i18n-js';
 import TabBarIcon from "../../components/TabBarIcon";
-import {randomShuffle, seeder} from '../../utils/shuffle';
+
+const shuffleSeed = require('shuffle-seed');
 
 export default class Tasks extends React.Component {
-    gifsIndexReference = [1, 2, 3, 4, 5];
     state = {
+        gifsArray: [1, 2, 3, 4, 5],
+        currentGifIndex: 1,
         inputValue: '1',
-        gifPathIndex: 1,
-        gifSource: require('../../assets/gifs/1.gif'),
     };
 
 
     componentDidMount() {
         setInterval(() => {
-            this.setState({gifPathIndex: (this.state.gifPathIndex % 5) + 1}, () => {
-                this.setState({
-                    gifSource: (()=>{
-                        /*DYNAMIC REQUIRE STATEMENT DECLARATION DOES NOT WORK WTH IMAGE INPUT*/
-                        switch (this.state.gifPathIndex) {
-                            case 1:
-                                return require('../../assets/gifs/1.gif');
-                            case 2:
-                                return require('../../assets/gifs/2.gif');
-                            case 3:
-                                return require('../../assets/gifs/3.gif');
-                            case 4:
-                                return require('../../assets/gifs/4.gif');
-                            case 5:
-                                return require('../../assets/gifs/5.gif')
-                        }
-                    })(),
-                })
-            });
+            this.setState({currentGifIndex: (this.state.currentGifIndex % 5) + 1});
         }, 5000);
     }
 
@@ -44,12 +26,10 @@ export default class Tasks extends React.Component {
     };
 
     onSaveButtonPressed = () => {
-        console.log('save pressed', seeder);
-        console.log('2');
-        // const seeder = seeder();
-        // seeder.set(this.gifsIndexReference.length);
-        // console.log('result', randomShuffle(this.gifsIndexReference, seeder.get()));
-        // console.log('result', randomShuffle(this.gifsIndexReference, seeder.get()));
+        //shuffle array
+        const shuffled = shuffleSeed.shuffle(this.state.gifsArray, this.state.inputValue);
+        console.log('result', shuffled);
+        this.setState({gifArray: shuffled})
     };
 
     onTextInputChange = (value) => {
@@ -60,7 +40,7 @@ export default class Tasks extends React.Component {
         return (
             <View style={styles.container}>
                 <View>
-                    <Image source={this.state.gifSource}/>
+                    <Image source={require(`../../assets/gifs/${this.state.currentGifIndex}`)}/>
                 </View>
                 <View style={styles.inputContainer}>
                     <TextInput style={styles.textInput} multiline={false}
