@@ -20,7 +20,6 @@ export default class Tasks extends React.Component {
     render() {
         return (
             <View style={styles.container}>
-
                 <View>
                     <Image source={require('../../assets/gifs/2.gif')} />
                 </View>
