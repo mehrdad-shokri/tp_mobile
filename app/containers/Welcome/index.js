@@ -1,23 +1,37 @@
 import React from 'react';
-import {StyleSheet, Text, View} from 'react-native';
-import {FAB} from 'react-native-paper';
+import {StyleSheet, Text, View, Image} from 'react-native';
+import {Button, TextInput} from 'react-native-paper';
 import i18n from 'i18n-js';
 import TabBarIcon from "../../components/TabBarIcon";
 
 export default class Tasks extends React.Component {
+    state = {
+        inputValue: null
+    };
+
     static navigationOptions = {
         tabBarIcon: TabBarIcon('check')
+    };
+
+    shuffleArray = () => {
+
     };
 
     render() {
         return (
             <View style={styles.container}>
-                <FAB
-                    style={styles.fab}
-                    small
-                    icon="add"
-                    onPress={() => console.log('Pressed')}
-                />
+
+                <View>
+                    <Image source={require('../../assets/gifs/2.gif')} />
+                </View>
+                <View style={styles.inputContainer}>
+                    <TextInput style={styles.textInput} multiline={false} onChangeText={(value)=> this.setState({inputValue: value})} placeholder={'Enter a number'}  mode={'outlined'}/>
+                </View>
+
+                <View style={styles.inputContainer}>
+                    <Button style={styles.buttons} mode={'contained'} color={'white'} onPress={this.shuffleArray}> Save</Button>
+                    <Button style={styles.buttons} mode={'contained'} color={'orange'}>Randomise</Button>
+                </View>
             </View>
         )
     }
@@ -25,12 +39,20 @@ export default class Tasks extends React.Component {
 
 const styles = StyleSheet.create({
     container: {
-      flex: 1
+      flex: 1,
     },
-    fab: {
-        position: 'absolute',
-        margin: 16,
-        right: 0,
-        bottom: 0,
+    inputContainer: {
+        justifyContent: 'space-around',
+        alignItems: 'center',
+        flexDirection: 'row',
+        flexDirection: 'row',
+        marginBottom: 15,
+        marginTop: 15,
+    },
+    textInput: {
+        flex: 1
+    },
+    buttons: {
+        flex: .4
     }
 });
