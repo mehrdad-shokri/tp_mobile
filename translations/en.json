@@ -1,0 +1,11 @@
+{
+  "appName": "TP",
+  "navigation": {
+    "tasks": "کارها",
+    "calendar": "تقویم",
+    "settings": "تنظیمات"
+  },
+  "tasks": {
+
+  }
+}
