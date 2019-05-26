@@ -29,23 +29,32 @@ export default class Tasks extends React.Component {
         showInputValueError: false
     };
 
+    _didFocusSubscription;
+    _willBlurSubscription;
+
+    constructor(props) {
+        super(props);
+        this._didFocusSubscription = props.navigation.addListener('didFocus', payload =>
+            BackHandler.addEventListener('hardwareBackPress', this.onBackButtonPressAndroid)
+        );
+    }
+
     componentDidMount() {
-        this.interval  = setInterval(() => {
-            this.setState({currentGifIndex: (++this.state.currentGifIndex % 5)});
-        }, 5000);
-        BackHandler.addEventListener('hardwareBackPress', this.handleBackButton);
+        this._willBlurSubscription = this.props.navigation.addListener('willBlur', payload =>
+            BackHandler.removeEventListener('hardwareBackPress', this.onBackButtonPressAndroid)
+        );
     }
 
-    componentWillUnmount(){
-        BackHandler.removeEventListener('hardwareBackPress')
-        clearInterval(this.interval);
-    }
-
-    handleBackButton = () => {
-        console.log('on back press', this.props.navigation);
+    onBackButtonPressAndroid = () => {
+        console.log('onbackpress Welcome');
         this.props.navigation.navigate('HOF');
         return true;
     };
+
+    componentWillUnmount() {
+        this._didFocusSubscription && this._didFocusSubscription.remove();
+        this._willBlurSubscription && this._willBlurSubscription.remove();
+    }
 
     onSaveButtonPressed = () => {
         if(!this.state.inputValue)

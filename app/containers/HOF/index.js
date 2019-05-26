@@ -1,6 +1,5 @@
 import React from 'react';
 import {BackHandler, Text, View} from 'react-native';
-import {NavigationActions} from 'react-navigation';
 import TabBarIcon from '../../components/TabBarIcon';
 
 export default class HOF extends React.Component {
@@ -8,19 +7,29 @@ export default class HOF extends React.Component {
         tabBarIcon: TabBarIcon('settings')
     };
 
+    constructor(props) {
+        super(props);
+        this._didFocusSubscription = props.navigation.addListener('didFocus', payload =>
+            BackHandler.addEventListener('hardwareBackPress', this.onBackButtonPressAndroid)
+        );
+    }
+
     componentDidMount() {
-        BackHandler.addEventListener('hardwareBackPress', this.handleBackButton);
+        this._willBlurSubscription = this.props.navigation.addListener('willBlur', payload =>
+            BackHandler.removeEventListener('hardwareBackPress', this.onBackButtonPressAndroid)
+        );
     }
 
-    componentWillUnmount() {
-        BackHandler.removeEventListener('hardwareBackPress');
-    }
-
-    handleBackButton = () => {
-        console.log('on back press', this.props.navigation);
-        this.props.navigation.navigate('HOF');
+    onBackButtonPressAndroid = () => {
+        console.log('on back press hof');
+        this.props.navigation.navigate('Welcome');
         return true;
     };
+
+    componentWillUnmount() {
+        this._didFocusSubscription && this._didFocusSubscription.remove();
+        this._willBlurSubscription && this._willBlurSubscription.remove();
+    }
 
     render() {
         return (

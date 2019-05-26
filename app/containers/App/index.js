@@ -25,8 +25,5 @@ const bottomTabBarNavigator = createMaterialBottomTabNavigator({
         borderColor: '#d0cfd0',
     },
 });
-console.log('bottomTabBarNavigator', bottomTabBarNavigator);
-
-
 
 export default createAppContainer(bottomTabBarNavigator)
