@@ -5,36 +5,17 @@ import {bindActionCreators} from 'redux';
 import {connect} from 'react-redux';
 import {Appbar} from 'react-native-paper';
 import TabBarIcon from '../../components/TabBarIcon';
+import BackHandlerHOC from '../BackHandlerHOC';
 import i18n from 'i18n-js';
 import {fetchActorsListRequest} from "../../store/action/hof";
 
-class HOF extends React.Component {
+class HOF extends BackHandlerHOC {
     static navigationOptions = {
         tabBarIcon: TabBarIcon('list')
     };
 
-    constructor(props) {
-        super(props);
-        this._didFocusSubscription = props.navigation.addListener('didFocus', payload =>
-            BackHandler.addEventListener('hardwareBackPress', this.onBackButtonPressAndroid)
-        );
-    }
-
     componentDidMount() {
-        this._willBlurSubscription = this.props.navigation.addListener('willBlur', payload =>
-            BackHandler.removeEventListener('hardwareBackPress', this.onBackButtonPressAndroid)
-        );
         this.props.fetchActorsList();
-    }
-
-    onBackButtonPressAndroid = () => {
-        this.props.navigation.navigate('Welcome');
-        return true;
-    };
-
-    componentWillUnmount() {
-        this._didFocusSubscription && this._didFocusSubscription.remove();
-        this._willBlurSubscription && this._willBlurSubscription.remove();
     }
 
     render() {

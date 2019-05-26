@@ -5,8 +5,6 @@ import {
 } from '../constant/hof';
 
 export function fetchActorsListRequest() {
-    console.log('fetchActorsListRequest');
-
     return {
         type: ON_ACTORS_LIST_FETCH_REQUEST
     }

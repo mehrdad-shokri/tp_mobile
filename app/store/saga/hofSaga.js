@@ -15,8 +15,6 @@ function* getActorsImages() {
         const actorsList = response.data.data;
         if (actorsList.length > 3) actorsList.splice(2, 0, SHELDEN_COOPER);
         else actorsList.push(SHELDEN_COOPER);
-        console.log('actorsList', actorsList);
-
         yield put(fetchActorsListSuccess(actorsList));
     } catch (e) {
         yield put(fetchActorsListFailure())

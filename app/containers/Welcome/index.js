@@ -1,13 +1,14 @@
 import React from 'react';
-import {StyleSheet, View, Image, BackHandler, Text} from 'react-native';
+import {StyleSheet, View, Image, Text} from 'react-native';
 import {Button, TextInput, Snackbar, Appbar} from 'react-native-paper';
 import i18n from 'i18n-js';
 import TabBarIcon from "../../components/TabBarIcon";
+import BackHandlerHOC from '../BackHandlerHOC';
 
 const shuffleSeed = require('shuffle-seed');
 
 
-export default class Tasks extends React.Component {
+export default class Tasks extends BackHandlerHOC {
     static navigationOptions = {
         tabBarIcon: TabBarIcon('home')
     };
@@ -28,32 +29,6 @@ export default class Tasks extends React.Component {
         showInputValueError: false
     };
 
-    _didFocusSubscription;
-    _willBlurSubscription;
-
-    constructor(props) {
-        super(props);
-        this._didFocusSubscription = props.navigation.addListener('didFocus', payload =>
-            BackHandler.addEventListener('hardwareBackPress', this.onBackButtonPressAndroid)
-        );
-    }
-
-    componentDidMount() {
-        this._willBlurSubscription = this.props.navigation.addListener('willBlur', payload =>
-            BackHandler.removeEventListener('hardwareBackPress', this.onBackButtonPressAndroid)
-        );
-    }
-
-    onBackButtonPressAndroid = () => {
-        this.props.navigation.navigate('HOF');
-        return true;
-    };
-
-    componentWillUnmount() {
-        this._didFocusSubscription && this._didFocusSubscription.remove();
-        this._willBlurSubscription && this._willBlurSubscription.remove();
-    }
-
     onSaveButtonPressed = () => {
         if(!this.state.inputValue)
         {
@@ -68,6 +43,7 @@ export default class Tasks extends React.Component {
         const randomNumber = parseInt(Math.random() * 9 + 1);
         this.shuffleArray(randomNumber);
     };
+
     shuffleArray = (input) => {
         const shuffled = shuffleSeed.shuffle(this.gifsArrayReference, input);
         this.setState({gifsArray: shuffled, currentGifIndex: 0})
