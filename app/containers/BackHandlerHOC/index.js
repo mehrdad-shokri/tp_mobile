@@ -26,7 +26,6 @@ class BackHandlerHOC extends React.Component {
 
     onBackButtonPressAndroid = () => {
         const {navigation} = this.props;
-        console.log(new Date().getTime() - this.state.lastBackPressedTimeStamp);
         if(this.state.lastBackPressedTimeStamp && (new Date().getTime() - this.state.lastBackPressedTimeStamp < 5000)){
             return false;
         }
