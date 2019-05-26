@@ -5,9 +5,13 @@
     "hallOfFame": "HOF"
   },
   "welcome": {
+    "title": "Welcome",
     "inputValueRequired": "Input value is required",
     "inputPlaceholder": "Enter a number",
     "save": "Save",
     "randomise": "Randomise"
+  },
+  "hof": {
+    "title": "Hall of Fame"
   }
 }

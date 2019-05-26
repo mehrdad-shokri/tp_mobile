@@ -1,9 +1,8 @@
 import React from 'react';
-import {StyleSheet, View, Image, BackHandler} from 'react-native';
-import {Button, TextInput, Snackbar} from 'react-native-paper';
+import {StyleSheet, View, Image, BackHandler, Text} from 'react-native';
+import {Button, TextInput, Snackbar, Appbar} from 'react-native-paper';
 import i18n from 'i18n-js';
 import TabBarIcon from "../../components/TabBarIcon";
-import {NavigationActions} from "react-navigation";
 
 const shuffleSeed = require('shuffle-seed');
 
@@ -83,6 +82,7 @@ export default class Tasks extends React.Component {
     render() {
         return (
             <View style={styles.container}>
+                <Appbar><Text style={styles.appBarTitle}>{i18n.t('welcome.title')}</Text></Appbar>
                 <View>
                     <Image source={this.images[this.state.gifsArray[this.state.currentGifIndex]]}/>
                 </View>
@@ -108,6 +108,10 @@ export default class Tasks extends React.Component {
 }
 
 const styles = StyleSheet.create({
+    appBarTitle: {
+        color: 'white',
+        fontSize: 18
+    },
     container: {
         flex: 1,
     },

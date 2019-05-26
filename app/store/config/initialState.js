@@ -1,8 +1,7 @@
 const initialState = {
-  user: {
-    email: null,
-    jwtToken: null,
-    jwtTTL: 0,
-  },
+  hof: {
+    loading: true,
+    actorsList: [],
+  }
 };
 export default initialState;
