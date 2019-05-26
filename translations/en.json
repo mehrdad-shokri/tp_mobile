@@ -5,6 +5,9 @@
     "hallOfFame": "HOF"
   },
   "welcome": {
-    "inputValueRequired": "Input value is required"
+    "inputValueRequired": "Input value is required",
+    "inputPlaceholder": "Enter a number",
+    "save": "Save",
+    "randomise": "Randomise"
   }
 }

@@ -71,13 +71,13 @@ export default class Tasks extends React.Component {
                                onChangeText={this.onTextInputChange}
                                value={this.state.inputValue}
                                keyboardType={'numeric'}
-                               placeholder={'Enter a number'} mode={'outlined'}/>
+                               placeholder={i18n.t('welcome.inputPlaceholder')} mode={'outlined'}/>
                 </View>
 
                 <View style={styles.inputContainer}>
                     <Button style={styles.buttons} mode={'contained'} color={'white'}
-                            onPress={this.onSaveButtonPressed}> Save</Button>
-                    <Button style={styles.buttons} mode={'contained'} color={'orange'} onPress={this.onRandomisePressed}>Randomise</Button>
+                            onPress={this.onSaveButtonPressed}>{i18n.t('welcome.save')}</Button>
+                    <Button style={styles.buttons} mode={'contained'} color={'orange'} onPress={this.onRandomisePressed}>{i18n.t('welcome.randomise')}</Button>
                 </View>
                 <Snackbar visible={this.state.showInputValueError} onDismiss={this.onInputValueErrorSnackbarDismiss} >
                     {i18n.t('welcome.inputValueRequired')}
