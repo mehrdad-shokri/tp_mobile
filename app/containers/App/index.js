@@ -4,7 +4,7 @@ import {createAppContainer} from 'react-navigation';
 import {createMaterialBottomTabNavigator} from 'react-navigation-material-bottom-tabs';
 import i18n from 'i18n-js';
 import Welcome from '../Welcome';
-import Settings from '../Settings';
+import HOF from '../HOF';
 import setupIntl from "../../utils/i18n";
 import en from "../../../translations/en";
 import fa from "../../../translations/fa";
@@ -12,7 +12,7 @@ import fa from "../../../translations/fa";
 setupIntl({en, fa});
 const bottomTabBarNavigator = createMaterialBottomTabNavigator({
     [i18n.t('navigation.welcome')]: Welcome,
-    [i18n.t('navigation.hallOfFame')]: Settings
+    [i18n.t('navigation.hallOfFame')]: HOF
 }, {
     shifting: true,
     labeled: true,

@@ -2,7 +2,7 @@ import React from 'react';
 import {Text, View} from 'react-native';
 import TabBarIcon from '../../components/TabBarIcon';
 
-export default class Settings extends React.Component {
+export default class HOF extends React.Component {
     static navigationOptions = {
         tabBarIcon: TabBarIcon('settings')
     };
@@ -10,7 +10,7 @@ export default class Settings extends React.Component {
     render(){
         return (
             <View>
-                <Text>settings goes here</Text>
+                <Text>HOF goes here</Text>
             </View>
         )
     }

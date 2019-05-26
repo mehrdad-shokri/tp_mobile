@@ -1,5 +1,5 @@
 import React from 'react';
-import {StyleSheet, Text, View, Image} from 'react-native';
+import {StyleSheet, View, Image, BackHandler} from 'react-native';
 import {Button, TextInput, Snackbar} from 'react-native-paper';
 import i18n from 'i18n-js';
 import TabBarIcon from "../../components/TabBarIcon";
@@ -33,7 +33,18 @@ export default class Tasks extends React.Component {
         setInterval(() => {
             this.setState({currentGifIndex: (++this.state.currentGifIndex % 5)});
         }, 5000);
+        BackHandler.addEventListener('hardwareBackPress', this.handleBackButton);
     }
+
+    componentWillUnmount(){
+        BackHandler.removeEventListener('hardwareBackPress')
+    }
+
+    handleBackButton = ()=>{
+        console.log('on back press', this.props);
+        this.props.navigation.navigate('HOF');
+        return true;
+    };
 
     onSaveButtonPressed = () => {
         if(!this.state.inputValue)
