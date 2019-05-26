@@ -3,6 +3,7 @@ import {StyleSheet, View, Image, BackHandler} from 'react-native';
 import {Button, TextInput, Snackbar} from 'react-native-paper';
 import i18n from 'i18n-js';
 import TabBarIcon from "../../components/TabBarIcon";
+import {NavigationActions} from "react-navigation";
 
 const shuffleSeed = require('shuffle-seed');
 
@@ -12,8 +13,8 @@ export default class Tasks extends React.Component {
         tabBarIcon: TabBarIcon('home')
     };
 
+    interval;
     gifsArrayReference = [1, 2, 3, 4, 5];
-
     images =  {
         '1': require('../../assets/gifs/1.gif'),
         '2': require('../../assets/gifs/2.gif'),
@@ -21,7 +22,6 @@ export default class Tasks extends React.Component {
         '4': require('../../assets/gifs/4.gif'),
         '5': require('../../assets/gifs/5.gif'),
     };
-
     state = {
         gifsArray: [1, 2, 3, 4, 5],
         currentGifIndex: 0,
@@ -30,7 +30,7 @@ export default class Tasks extends React.Component {
     };
 
     componentDidMount() {
-        setInterval(() => {
+        this.interval  = setInterval(() => {
             this.setState({currentGifIndex: (++this.state.currentGifIndex % 5)});
         }, 5000);
         BackHandler.addEventListener('hardwareBackPress', this.handleBackButton);
@@ -38,10 +38,11 @@ export default class Tasks extends React.Component {
 
     componentWillUnmount(){
         BackHandler.removeEventListener('hardwareBackPress')
+        clearInterval(this.interval);
     }
 
-    handleBackButton = ()=>{
-        console.log('on back press', this.props);
+    handleBackButton = () => {
+        console.log('on back press', this.props.navigation);
         this.props.navigation.navigate('HOF');
         return true;
     };
