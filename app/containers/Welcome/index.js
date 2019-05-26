@@ -46,7 +46,6 @@ export default class Tasks extends React.Component {
     }
 
     onBackButtonPressAndroid = () => {
-        console.log('onbackpress Welcome');
         this.props.navigation.navigate('HOF');
         return true;
     };

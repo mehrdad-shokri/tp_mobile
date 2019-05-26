@@ -4,7 +4,7 @@ import TabBarIcon from '../../components/TabBarIcon';
 
 export default class HOF extends React.Component {
     static navigationOptions = {
-        tabBarIcon: TabBarIcon('settings')
+        tabBarIcon: TabBarIcon('emotsmile')
     };
 
     constructor(props) {
@@ -21,7 +21,6 @@ export default class HOF extends React.Component {
     }
 
     onBackButtonPressAndroid = () => {
-        console.log('on back press hof');
         this.props.navigation.navigate('Welcome');
         return true;
     };
