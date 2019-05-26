@@ -1,11 +1,10 @@
 {
   "appName": "TP",
   "navigation": {
-    "tasks": "کارها",
-    "calendar": "تقویم",
-    "settings": "تنظیمات"
+    "welcome": "Welcome",
+    "hallOfFame": "HOF"
   },
-  "tasks": {
-
+  "welcome": {
+    "inputValueRequired": "Input value is required"
   }
 }

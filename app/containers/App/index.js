@@ -11,8 +11,8 @@ import fa from "../../../translations/fa";
 
 setupIntl({en, fa});
 const bottomTabBarNavigator = createMaterialBottomTabNavigator({
-    [i18n.t('navigation.tasks')]: Welcome,
-    [i18n.t('navigation.settings')]: Settings
+    [i18n.t('navigation.welcome')]: Welcome,
+    [i18n.t('navigation.hallOfFame')]: Settings
 }, {
     shifting: true,
     labeled: true,

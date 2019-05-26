@@ -5,7 +5,7 @@
     "calendar": "تقویم",
     "settings": "تنظیمات"
   },
-  "tasks": {
-
+  "welcome": {
+    "inputValueRequired": "مقدار ورودی مورد نیاز است."
   }
 }
