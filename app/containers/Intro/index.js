@@ -31,12 +31,8 @@ class Intro extends React.Component {
     state = {
         showRealApp: false
     };
-    constructor(props){
-        super(props);
-        console.log('construct');
-    }
 
-    renderItem = (item) => {
+    _renderItem = (item) => {
         return (
             <View style={styles.slide}>
                 <Text style={styles.title}>{item.title}</Text>
@@ -45,16 +41,14 @@ class Intro extends React.Component {
             </View>
         );
     };
-    onDone = () => {
-        // User finished the introduction. Show real app through
-        // navigation or simply by controlling state
+    _onDone = () => {
         this.setState({ showRealApp: true });
     };
     render() {
         if (this.state.showRealApp) {
             return <App />;
         } else {
-            return <AppIntroSlider renderItem={this.renderItem} slides={slides} onDone={this.onDone}/>;
+            return <AppIntroSlider renderItem={this._renderItem} slides={slides} onDone={this._onDone}/>;
         }
     }
 }
