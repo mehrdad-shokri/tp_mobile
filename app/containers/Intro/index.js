@@ -1,6 +1,6 @@
 import React from 'react';
 import {View, Text, Image} from 'react-native'
-// import AppIntroSlider from 'react-native-app-intro-slider';
+import AppIntroSlider from 'react-native-app-intro-slider';
 import App from '../App';
 
 const slides = [
@@ -31,7 +31,12 @@ class Intro extends React.Component {
     state = {
         showRealApp: false
     };
-    _renderItem = (item) => {
+    constructor(props){
+        super(props);
+        console.log('construct');
+    }
+
+    renderItem = (item) => {
         return (
             <View style={styles.slide}>
                 <Text style={styles.title}>{item.title}</Text>
@@ -40,14 +45,17 @@ class Intro extends React.Component {
             </View>
         );
     };
-    _onDone = () => {
+    onDone = () => {
         // User finished the introduction. Show real app through
         // navigation or simply by controlling state
         this.setState({ showRealApp: true });
     };
     render() {
-        return <App />;
-
+        if (this.state.showRealApp) {
+            return <App />;
+        } else {
+            return <AppIntroSlider renderItem={this.renderItem} slides={slides} onDone={this.onDone}/>;
+        }
     }
 }
 
