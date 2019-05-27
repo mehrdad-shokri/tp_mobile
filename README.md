@@ -5,6 +5,8 @@ This is a sample app to demonstrate React Native knowledge.
 ``git clone https://github.com/mehrdad-shokri/tp_mobile``
 * Install dependencies  
 ``npm i``
+* Start metro bundler  
+``react-native start`` OR ``npm start``
 * Run application in development environment  
 ``react-native run-android`` 
 
@@ -15,24 +17,27 @@ Redux is utilized for efficient state management and (possible) data transfer be
 Side effect management is satisfied by Sagas.  
 To add new generator functions for a scene:
 * create a file named as the screen name in the ``app/store/saga``
-* Point the root saga in the created file in the ``app/store/config/rootSaga``  
+* update rootSaga located at ``app/store/config/rootSaga``  with your new saga
 
 React Navigation is used for application routing. you can take a look at its setup at ``app/containers/App``  
 
 # Project structure
 This project is divided into separate directories based on responsibilities:  
 * app  
- Mostly all the code that you are going to work on is located here.  
+ Almost all of the app logic resides here. Besides project configuration, business logic resides here.
  
  #### app directory
  * assets  
- Static assets
- * components  
- Presentational components that are not connected to redux store.
- * containers  
- All the application screens are located in this directory. Most of the components in this directory are container components and are usually connected to redux store
- * store  
- All the redux related configurations, reducers, action creators and sagas.
- * utils  
-Utility files and methods.
+ Static assets  
  
+ * components  
+ Presentational components  
+ 
+ * containers  
+ Application root screens are located here, almost all of them are connected to redux, have business logic and handle presentational components.  
+ 
+ * store
+ All the redux related configurations, reducers, action creators and sagas.  
+ 
+ * utils  
+Core js code acting as helper functions or configuring part of the application.  
