@@ -3,10 +3,11 @@ import {ON_ACTORS_LIST_FETCH_REQUEST} from '../constant/hof';
 import axios from 'axios'
 import {fetchActorsListSuccess, fetchActorsListFailure} from '../action/hof';
 
-const actorsApi = 'http://www.mocky.io/v2/5cea71463300005d137c37ef';
+const actorsApi = 'http://www.mocky.io/v2/5ceb87d233000045807c3a7e';
 const SHELDEN_COOPER = {
     "name": "Shelden Cooper",
-    "url": "https://i.pinimg.com/originals/2e/29/c4/2e29c41787d04c4b3de4aa3832566357.jpg"
+    "url": "https://i.pinimg.com/originals/2e/29/c4/2e29c41787d04c4b3de4aa3832566357.jpg",
+    "key": "shelden-cooper"
 };
 
 function* getActorsImages() {
