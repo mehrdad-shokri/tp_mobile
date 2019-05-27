@@ -1,5 +1,12 @@
 # TP app challenge
 This is a sample app to demonstrate React Native knowledge.
+
+Welcome screen             |  Hall of fame screen
+:-------------------------:|:-------------------------:
+![Welcome screen](assets/welcome.jpg "Welcome")  |  ![Hall of fame screen](assets/hof.jpg "Welcome")
+
+
+
 # Getting started
 * Clone the repository  
 ``git clone https://github.com/mehrdad-shokri/tp_mobile``
