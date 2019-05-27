@@ -14,11 +14,13 @@ class BackHandlerHOC extends React.Component {
             BackHandler.addEventListener('hardwareBackPress', this.onBackButtonPressAndroid)
         );
     }
+
     componentDidMount() {
         this._willBlurSubscription = this.props.navigation.addListener('willBlur', payload =>
             BackHandler.removeEventListener('hardwareBackPress', this.onBackButtonPressAndroid)
         );
     }
+
     componentWillUnmount() {
         this._didFocusSubscription && this._didFocusSubscription.remove();
         this._willBlurSubscription && this._willBlurSubscription.remove();
@@ -26,7 +28,8 @@ class BackHandlerHOC extends React.Component {
 
     onBackButtonPressAndroid = () => {
         const {navigation} = this.props;
-        if(this.state.lastBackPressedTimeStamp && (new Date().getTime() - this.state.lastBackPressedTimeStamp < 5000)){
+        if (this.state.lastBackPressedTimeStamp && (new Date().getTime() - this.state.lastBackPressedTimeStamp < 500)) {
+            this.setState({lastBackPressedTimeStamp: null});
             return false;
         }
         this.setState({lastBackPressedTimeStamp: new Date().getTime()});
@@ -41,7 +44,6 @@ class BackHandlerHOC extends React.Component {
                 return false
         }
     };
-
 }
 
 export default BackHandlerHOC;
