@@ -15,7 +15,7 @@ export default class Tasks extends BackHandlerHOC {
 
     interval;
     gifsArrayReference = [1, 2, 3, 4, 5];
-    images =  {
+    images = {
         '1': require('../../assets/gifs/1.gif'),
         '2': require('../../assets/gifs/2.gif'),
         '3': require('../../assets/gifs/3.gif'),
@@ -29,9 +29,19 @@ export default class Tasks extends BackHandlerHOC {
         showInputValueError: false
     };
 
+    componentDidMount() {
+        this.interval  = setInterval(() => {
+            this.setState({currentGifIndex: (++this.state.currentGifIndex % 5)});
+        }, 5000);
+    }
+
+    componentWillUnmount() {
+        super.componentWillUnmount();
+        clearInterval(this.interval);
+    }
+
     onSaveButtonPressed = () => {
-        if(!this.state.inputValue)
-        {
+        if (!this.state.inputValue) {
             this.setState({showInputValueError: true});
             return;
         }
@@ -73,9 +83,10 @@ export default class Tasks extends BackHandlerHOC {
                 <View style={styles.inputContainer}>
                     <Button style={styles.buttons} mode={'contained'} color={'white'}
                             onPress={this.onSaveButtonPressed}>{i18n.t('welcome.save')}</Button>
-                    <Button style={styles.buttons} mode={'contained'} color={'orange'} onPress={this.onRandomisePressed}>{i18n.t('welcome.randomise')}</Button>
+                    <Button style={styles.buttons} mode={'contained'} color={'orange'}
+                            onPress={this.onRandomisePressed}>{i18n.t('welcome.randomise')}</Button>
                 </View>
-                <Snackbar visible={this.state.showInputValueError} onDismiss={this.onInputValueErrorSnackbarDismiss} >
+                <Snackbar visible={this.state.showInputValueError} onDismiss={this.onInputValueErrorSnackbarDismiss}>
                     {i18n.t('welcome.inputValueRequired')}
                 </Snackbar>
             </View>
