@@ -6,6 +6,19 @@ Welcome screen             |  Hall of fame screen
 ![Welcome screen](assets/welcome.jpg "Welcome")  |  ![Hall of fame screen](assets/hof.jpg "Welcome")
 
 
+# PLEASE NOTE
+There are some aspects in this challenge that are not fully fulfilled.  
+## Intro screen
+First of all Intro screen is not implemented and it's easiest screen of all 3.  
+I'm going to describe what procedure would look like:  
+* The root component(App.js) would render a jsx like this:  
+
+    {this.state.isFirstVisit? <Intro/> : <Main />}
+    
+* ``isFirstVisit`` comes from ``AsyncStorage.getItem('IS_FIRST_VISIT')`` read.  ``AsyncStorage.setItem('IS_FIRST_VISIT', true)`` is logically called on Intro screen ``componentWillUnmount``.  
+* The Intro screen it self is a really simple component utilizing a library like [this](react-native-app-intro-slider).  
+## Documentation
+Documentation should be more accurate than a README. in an ideal situation (productioan application) I would create a docs dir and create a set of documentations there. The topics that I would document for an application are: architecture and project structure, testing flow, etc.  
 
 # Getting started
 * Clone the repository  
