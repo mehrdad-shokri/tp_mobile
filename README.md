@@ -20,6 +20,9 @@ I'm going to describe what procedure would look like:
 ## Documentation
 Documentation should be more accurate than a README. in an ideal situation (productioan application) I would create a docs dir and create a set of documentations there. The topics that I would document for an application are: architecture and project structure, testing flow, etc.  
 
+## BackHandler section
+Also I think the ``BackHandlerHOC`` approach would not seem very appealing. You could make that component a HOC with ``{this.props.children}``. But I somehow thought to program in an OOP manner rather than React style.
+
 # Getting started
 * Clone the repository  
 ``git clone https://github.com/mehrdad-shokri/tp_mobile``
